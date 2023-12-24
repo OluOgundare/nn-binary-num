@@ -192,6 +192,9 @@ class Network():
     
     def plot_loss(self):
         plt.plot(self.history)
+        plt.xlabel("Epochs")
+        plt.ylabel("Loss")
+        plt.title("Loss vs Epochs")
         plt.show()
 
 train_d, val_d, test_d = load_data_wrapper()
