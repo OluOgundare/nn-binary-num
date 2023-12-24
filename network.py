@@ -4,6 +4,14 @@ import matplotlib.pyplot as plt
 from mnist_loader import load_data_wrapper
 import random
 
+"""
+Neural Network Code
+Based on the work presented in 'Neural Networks and Deep Learning' by Michael Nielsen
+Reference:
+Nielsen, M. A. (2015). Neural Networks and Deep Learning. Determination Press.
+URL: http://neuralnetworksanddeeplearning.com/
+"""
+
 class Network():
     
     def __init__(self, sizes):
@@ -159,6 +167,7 @@ class Network():
             outputs.append((self.feedforward(x), y))
             final_layers.append(self.final_layer)
         output_sum = 0
+        # Matrix to convert output to bit representation
         binary_weights = np.matrix([
             [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
@@ -170,6 +179,7 @@ class Network():
             binary_output = np.matmul(binary_weights, final_layers.popleft())
             binary_num = []
             for x in binary_output:
+                # Based on network certainty of a given number, certain neurons become active for final layer
                 if x > 0.7:
                     binary_num.append("1")
                 elif binary_num:
